@@ -4,10 +4,619 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Karen-V-Y-B Distributors Limited</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      :root {
+        --bg: #020b14;
+        --bg-2: #071d2d;
+        --panel: rgba(9, 24, 35, 0.96);
+        --panel-2: rgba(15, 34, 52, 0.96);
+        --line: rgba(126, 185, 255, 0.18);
+        --text: #edf9ff;
+        --muted: #a8bed2;
+        --blue: #36c2ff;
+        --cyan: #9ae6ff;
+        --green: #72f0c2;
+        --purple: #7b7af8;
+        --danger: #ff5d70;
+        --shadow: 0 25px 55px rgba(0, 0, 0, 0.38);
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 14px 18px;
+        background: linear-gradient(180deg, rgba(15, 35, 52, 0.95), rgba(7, 22, 35, 0.96));
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #7dd3fc, #1d6dff);
+        display: grid;
+        place-items: center;
+        color: #071a25;
+        font-weight: 900;
+        font-size: 18px;
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .nav a {
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .nav a:hover {
+        color: var(--text);
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .search-box {
+        background: rgba(9, 22, 31, 0.9);
+        border: 1px solid var(--line);
+        color: var(--muted);
+        border-radius: 10px;
+        padding: 10px 12px;
+        min-width: 160px;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--blue), #166ef8);
+        color: white;
+        font-weight: 700;
+        padding: 10px 16px;
+        cursor: pointer;
+      }
+
+      .btn.secondary {
+        background: rgba(11, 24, 34, 0.9);
+        border: 1px solid var(--line);
+        color: var(--text);
+      }
+
+      .hero {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 18px;
+      }
+
+      .hero-large {
+        min-height: 420px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(5, 14, 22, 0.12), rgba(5, 14, 22, 0.7)),
+          url("https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-content {
+        position: absolute;
+        left: 24px;
+        right: 24px;
+        bottom: 24px;
+      }
+
+      .kicker {
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--cyan);
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(30px, 3vw, 58px);
+        line-height: 0.96;
+        letter-spacing: -0.05em;
+      }
+
+      .hero p {
+        color: var(--muted);
+        max-width: 380px;
+        margin: 12px 0 20px;
+        font-size: 15px;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .card {
+        background: linear-gradient(180deg, rgba(10, 26, 39, 0.96), rgba(6, 18, 29, 0.98));
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .pad {
+        padding: 18px 14px;
+      }
+
+      .panel-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+
+      .title {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .tiny {
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .metric {
+        background: rgba(12, 27, 39, 0.9);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 10px;
+      }
+
+      .metric .label {
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .metric .value {
+        margin-top: 10px;
+        font-weight: 800;
+        font-size: 27px;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1.2fr 1fr;
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .section-box {
+        padding: 20px 16px;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .product-card {
+        border: 1px solid rgba(128, 180, 255, 0.18);
+        background: rgba(10, 24, 35, 0.9);
+        border-radius: 12px;
+        padding: 8px;
+      }
+
+      .product-image {
+        height: 110px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, rgba(62, 96, 147, 0.28), rgba(12, 24, 38, 0.85));
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 8px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .product-image::before {
+        content: "";
+        position: absolute;
+        left: 25%;
+        top: 18%;
+        width: 50%;
+        height: 58%;
+        background: linear-gradient(160deg, #1b2a38, #48d6ff);
+        border-radius: 12px;
+        transform: rotate(-10deg);
+        box-shadow: 0 0 24px rgba(72, 214, 255, 0.35);
+      }
+
+      .product-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .product-name {
+        font-size: 12px;
+      }
+
+      .product-price {
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .list-item {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        gap: 10px;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: rgba(9, 22, 32, 0.9);
+        border: 1px solid var(--line);
+      }
+
+      .badge {
+        border-radius: 999px;
+        background: rgba(14, 37, 48, 0.8);
+        border: 1px solid rgba(118, 204, 255, 0.24);
+        color: var(--cyan);
+        font-size: 10px;
+        padding: 5px 8px;
+      }
+
+      .chart {
+        height: 180px;
+        position: relative;
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(15, 40, 54, 0.9), rgba(6, 19, 30, 0.9));
+        border: 1px solid var(--line);
+        overflow: hidden;
+      }
+
+      .chart::before {
+        content: "";
+        position: absolute;
+        inset: 14px 12px 18px 12px;
+        background:
+          linear-gradient(to right, rgba(141, 185, 255, 0.18) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(141, 185, 255, 0.18) 1px, transparent 1px);
+        background-size: 22px 22px;
+        border-radius: 12px;
+      }
+
+      .chart::after {
+        content: "";
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+        height: 110px;
+        background: linear-gradient(180deg, rgba(54, 194, 255, 0), rgba(54, 194, 255, 0.42));
+        clip-path: polygon(0% 100%, 12% 74%, 24% 80%, 34% 55%, 48% 64%, 64% 20%, 79% 34%, 100% 0%, 100% 100%);
+      }
+
+      .footer-contact {
+        margin-top: 32px;
+        padding: 20px 18px;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(13, 31, 46, 0.95), rgba(6, 18, 29, 0.98));
+        border: 1px solid var(--line);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .contact-block {
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: rgba(9, 22, 32, 0.9);
+        border: 1px solid var(--line);
+      }
+
+      @media (max-width: 980px) {
+        .hero {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .hero-large {
+          grid-column: 1 / -1;
+        }
+
+        .content-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .nav {
+          display: none;
+        }
+
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar {
+          flex-wrap: wrap;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
-    <script src="/app.js"></script>
+    <div class="container">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">K</div>
+          <div>KAREN-V-Y-B</div>
+        </div>
+
+        <nav class="nav">
+          <a href="#home">Home</a>
+          <a href="#products">Products</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="actions">
+          <div class="search-box">Search</div>
+          <button class="btn secondary">Login</button>
+          <button class="btn">Get Quote</button>
+        </div>
+      </header>
+
+      <section class="hero" id="home">
+        <div class="hero-large">
+          <div class="hero-content">
+            <div class="kicker">Hardware Equipment</div>
+            <h1>Karen-V-Y-B<br />Distributors Limited</h1>
+            <p>Trusted supplier of industrial tools, hardware equipment, electrical products and workshop essentials for homes, businesses, and construction projects.</p>
+            <div class="cta-row">
+              <button class="btn">Shop Now</button>
+              <button class="btn secondary">Catalogue</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card pad">
+          <div class="panel-head">
+            <div class="title">Quick Stats</div>
+            <div class="tiny">Live</div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="metric">
+              <div class="label">Products</div>
+              <div class="value">1.2k</div>
+            </div>
+            <div class="metric">
+              <div class="label">Clients</div>
+              <div class="value">480</div>
+            </div>
+            <div class="metric">
+              <div class="label">Orders</div>
+              <div class="value">742</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card pad">
+          <div class="panel-head">
+            <div class="title">Support</div>
+            <div class="tiny">24/7</div>
+          </div>
+
+          <div class="list">
+            <div class="list-item">
+              <div>
+                <strong>Phone</strong><br>
+                <span class="tiny">0118078137</span>
+              </div>
+              <span class="badge">Call</span>
+            </div>
+
+            <div class="list-item">
+              <div>
+                <strong>Email</strong><br>
+                <span class="tiny">karenvyb6765@gmail.com</span>
+              </div>
+              <span class="badge">Mail</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="products" class="content-grid">
+        <div class="card section-box">
+          <div class="panel-head">
+            <div class="title">Featured Products</div>
+            <div class="tiny">Reliable stock</div>
+          </div>
+
+          <div class="product-grid">
+            <div class="product-card">
+              <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=800&q=80');"></div>
+              <div class="product-line">
+                <div class="product-name">Industrial Drill</div>
+                <div class="product-price">KSh 4,800</div>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=800&q=80');"></div>
+              <div class="product-line">
+                <div class="product-name">Safety Helmet</div>
+                <div class="product-price">KSh 950</div>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=800&q=80');"></div>
+              <div class="product-line">
+                <div class="product-name">Cable Pack</div>
+                <div class="product-price">KSh 2,200</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card section-box">
+          <div class="panel-head">
+            <div class="title">Popular Categories</div>
+            <div class="tiny">Hardware</div>
+          </div>
+
+          <div class="list">
+            <div class="list-item">
+              <div>Power Tools</div>
+              <span class="badge">330</span>
+              <strong>KSh 420k</strong>
+            </div>
+
+            <div class="list-item">
+              <div>Electrical</div>
+              <span class="badge">190</span>
+              <strong>KSh 260k</strong>
+            </div>
+
+            <div class="list-item">
+              <div>Safety Gear</div>
+              <span class="badge">270</span>
+              <strong>KSh 180k</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="card section-box">
+          <div class="panel-head">
+            <div class="title">Monthly Sales</div>
+            <div class="tiny">This month</div>
+          </div>
+          <div class="chart"></div>
+        </div>
+      </section>
+
+      <div id="about" class="footer-contact">
+        <div class="panel-head">
+          <div class="title">About Us</div>
+          <div class="tiny">Your trusted supplier</div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-block">
+            <strong>Who We Are</strong><br><br>
+            Karen-V-Y-B Distributors Limited supplies quality tools, industrial hardware, electrical equipment and workshop essentials for businesses and homes.
+          </div>
+
+          <div class="contact-block">
+            <strong>Why Choose Us</strong><br><br>
+            Trusted quality, consistent supply, competitive pricing, fast support and reliable customer service.
+          </div>
+
+          <div class="contact-block">
+            <strong>Contact</strong><br><br>
+            Phone: 0118078137<br>
+            Email: karenvyb6765@gmail.com
+          </div>
+        </div>
+      </div>
+
+      <div id="contact" class="footer-contact">
+        <div class="panel-head">
+          <div class="title">Contact Us</div>
+          <div class="tiny">Business support</div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-block">
+            <strong>Call Us</strong><br><br>
+            0118078137
+          </div>
+
+          <div class="contact-block">
+            <strong>Email Us</strong><br><br>
+            karenvyb6765@gmail.com
+          </div>
+
+          <div class="contact-block">
+            <strong>Business Hours</strong><br><br>
+            Mon - Sat: 8:00 AM - 6:00 PM
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
